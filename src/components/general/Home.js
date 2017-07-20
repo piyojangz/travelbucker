@@ -425,15 +425,15 @@ class Home extends Component {
   renderHistoryRow(rowData) {
     if (rowData.id != 0) {
       return (
-        <TouchableOpacity
+    
+          <TouchableOpacity
           onPress={Actions.comingSoon}
           style={{
-          padding: 8,
-          flex: 1,
+          padding: 16, 
           flexDirection: 'row',
-          justifyContent: 'center',
           backgroundColor: '#FFFFFF'
         }}>
+        
           {this.renderOutcomeImg(rowData.outcometype)}
 
           <View
@@ -470,9 +470,7 @@ class Home extends Component {
         <TouchableOpacity
           onPress={Actions.comingSoon}
           style={{
-          padding: 16,
-          paddingBottom: 0,
-          flex: 1,
+          padding: 16, 
           flexDirection: 'row',
           backgroundColor: '#FFFFFF'
         }}>
@@ -487,7 +485,7 @@ class Home extends Component {
             uri: rowData.img
           }}/>
           <View style={{
-            padding: 10
+            paddingLeft: 10
           }}>
             <Text style={{
               fontSize: 16
@@ -754,7 +752,7 @@ class Home extends Component {
         <View
           style={{
           backgroundColor: '#27AE60',
-          paddingBottom: 10,
+          paddingBottom: 20,
           alignItems: 'center',
           flexDirection: 'column'
         }}>
@@ -840,8 +838,8 @@ class Home extends Component {
               style={{
               fontFamily: 'Roboto-Black',
               fontWeight: 'bold',
-              fontSize: 32,
-              paddingTop: 20,
+              fontSize: 24, 
+              paddingTop: 10,
               color: '#ffffff'
             }}>฿{this.props.stotal}
               <Text

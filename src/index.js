@@ -42,6 +42,7 @@ if (__DEV__) {
 const store = compose(
   applyMiddleware(...middleware),
 )(createStore)(rootReducer);
+ 
 
 /* Component ==================================================================== */
 // Wrap App in Redux provider (makes Redux available to all sub-components)

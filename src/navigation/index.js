@@ -16,21 +16,24 @@ import Drawer from '@containers/ui/DrawerContainer';
 // Scenes
 import AppLaunch from '@containers/Launch/LaunchContainer';
 import Placeholder from '@components/general/Placeholder';
+import WebView from '@components/general/WebView';
+import Outcome from '@components/general/inputtype/Outcome';
+
 import AuthScenes from './auth';
 import TabsScenes from './tabs';
 
 /* Routes ==================================================================== */
 export default Actions.create(
   <Scene key={'root'} {...AppConfig.navbarProps}>
-    <Scene
+    {/*<Scene
       hideNavBar
       key={'splash'}
-      component={AppLaunch}
+      component={AuthScenes}
       analyticsDesc={'AppLaunch: Launching App'}
-    />
+    />*/}
 
     {/* Auth */}
-    {AuthScenes}
+    {/*{AuthScenes}*/}
 
     {/* Main App */}
     <Scene key={'app'} {...AppConfig.navbarProps} title={AppConfig.appName} hideNavBar={false} type={ActionConst.RESET}>
@@ -48,6 +51,16 @@ export default Actions.create(
         component={Placeholder}
         analyticsDesc={'Placeholder: Coming Soon'}
       />
+
+
+      <Scene
+        clone
+        key={'inputdetail'} 
+        component={Outcome}
+        analyticsDesc={'Placeholder: Coming Soon'}
+      />
+
+
     </Scene>
   </Scene>,
 );

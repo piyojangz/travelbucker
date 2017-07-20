@@ -6,15 +6,15 @@
  */
 
 const app = {
-  background: '#E9EBEE',
+  background: '#F7F9FB',
   cardBackground: '#FFFFFF',
   listItemBackground: '#FFFFFF',
 };
 
 const brand = {
   brand: {
-    primary: '#0E4EF8',
-    secondary: '#17233D',
+    primary: '#27AE60',
+    secondary: '#F1C40F',
   },
 };
 
@@ -26,7 +26,7 @@ const text = {
 };
 
 const borders = {
-  border: '#D0D1D5',
+  border: '#ECF0F1',
 };
 
 const tabbar = {

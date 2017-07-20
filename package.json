@@ -1,5 +1,5 @@
 {
-  "name": "StarterKit",
+  "name": "Kongklang",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -25,6 +25,7 @@
     "react": "16.0.0-alpha.6",
     "react-addons-shallow-compare": "^15.4.2",
     "react-native": "0.44.3",
+    "react-native-animatable": "^1.2.2",
     "react-native-device-info": "^0.10.1",
     "react-native-dotenv": "0.0.4",
     "react-native-elements": "^0.12.2",
@@ -54,5 +55,10 @@
     "jest": "^20.0.4",
     "jest-react-native": "^18.0.0",
     "react-test-renderer": "^16.0.0-alpha.6"
+  },
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts"
+    ]
   }
 }

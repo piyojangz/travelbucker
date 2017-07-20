@@ -16,15 +16,18 @@ import { AppStyles } from '@theme/';
 // Components
 import { Text } from '@ui/';
 
+  
+
 /* Component ==================================================================== */
-const Placeholder = ({ text }) => (
+const Placeholder = ({ text,aaa }) => (
   <View style={[AppStyles.container, AppStyles.containerCentered]}>
     <Text>{text}</Text>
+    <Text>{aaa}</Text>
   </View>
 );
 
 Placeholder.propTypes = { text: PropTypes.string };
-Placeholder.defaultProps = { text: 'Coming soon...' };
+Placeholder.defaultProps = { text: 'Coming soon...',aaa:'sssss' };
 Placeholder.componentName = 'Placeholder';
 
 /* Export Component ==================================================================== */

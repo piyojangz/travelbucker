@@ -228,8 +228,9 @@ export default {
   navbarTitle: {
     color: '#ffffff',
     fontWeight: 'bold',
-    fontFamily: Fonts.base.family,
-    fontSize: Fonts.base.size,
+    fontFamily: 'Roboto-Bold',
+    paddingTop:0,
+    fontSize: 18,
   },
   navbarButton: {
     tintColor: '#ffffff',

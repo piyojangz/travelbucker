@@ -16,7 +16,7 @@ const track = store => next => (action) => {
   // Track each screen view to Redux
   // - Requires that each Scene in RNRF have a 'analyticsDesc' prop
   switch (action.type) {
-    case 'REACT_NATIVE_ROUTER_FLUX_FOCUS' :
+    case 'REACT_NATIVE_ROUTER_FLUX_FOCUSxxxx' :
       if (action && action.scene && action.scene.analyticsDesc) {
         try {
           const screenName = (action.scene.title)

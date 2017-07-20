@@ -5,8 +5,7 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 import { connect } from 'react-redux';
-
-// Actions
+ 
 import * as UserActions from '@redux/user/actions';
 
 // The component we're mapping to
@@ -23,7 +22,7 @@ const mapStateToProps = state => ({
 
 // Any actions to map to the component?
 const mapDispatchToProps = {
-  submit: UserActions.login,
+    submit: UserActions.updateProfile,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormRender);

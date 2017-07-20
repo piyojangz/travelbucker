@@ -8,7 +8,7 @@
 // Set initial state
 export const initialState = {
   isOpen: false,
-  disableGestures: false,
+  disableGestures: false, 
 };
 
 export default function sideMenuReducer(state = initialState, action) {

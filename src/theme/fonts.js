@@ -13,13 +13,13 @@ function lineHeight(fontSize) {
 
 const base = {
   size: 14,
-  lineHeight: lineHeight(14),
+  lineHeight: lineHeight(20),
   ...Platform.select({
     ios: {
-      family: 'HelveticaNeue',
+      family: 'supermarket',
     },
     android: {
-      family: 'Roboto',
+      family: 'supermarket',
     },
   }),
 };

@@ -8,6 +8,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   WebView,
   StyleSheet,
@@ -20,13 +21,28 @@ import { AppColors, AppStyles } from '@theme/';
 // Components
 import Loading from '@components/general/Loading';
 import Error from '@components/general/Error';
-
+// Actions
+import * as RecipeActions from '@redux/recipes/actions';
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   container: {
     backgroundColor: AppColors.background,
   },
 });
+
+
+/* Redux ==================================================================== */
+// What data from the store shall we send to the component?
+const mapStateToProps = state => ({
+  meals: state.recipe.meals || [],
+});
+
+// Any actions to map to the component?
+const mapDispatchToProps = {
+  getMeals: RecipeActions.getMeals,
+};
+
+
 
 /* Component ==================================================================== */
 class AppWebView extends Component {
@@ -49,8 +65,16 @@ class AppWebView extends Component {
       webViewURL: props.url || null,
     };
   }
+  
+ 
+    getThisMealsRecipes = (allRecipes) => {
+     console.log("RECIEPT", this.props.outcometype);
+  }
 
   componentDidMount = () => {
+
+    this.getThisMealsRecipes(this.props.meals)
+
     // Wait until interaction has finished before loading the webview in
     InteractionManager.runAfterInteractions(() => {
       this.setState({ loading: false });
@@ -85,4 +109,4 @@ class AppWebView extends Component {
 }
 
 /* Export Component ==================================================================== */
-export default AppWebView;
+export default connect(mapStateToProps, mapDispatchToProps)(AppWebView);

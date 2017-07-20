@@ -13,13 +13,12 @@ import router from '@redux/router/reducer';
 import sideMenu from '@redux/sidemenu/reducer';
 import user from '@redux/user/reducer';
 import recipe from '@redux/recipes/reducer';
-
+import appdataReducer from '@redux/appdata/reducer';
 // Combine all
 const appReducer = combineReducers({
   router,
-  sideMenu,
-  user,
-  recipe,
+  sideMenu, 
+  appdataReducer,
 });
 
 // Setup root reducer

@@ -5,24 +5,25 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 /* global __DEV__ */
-import { AppColors, AppStyles, AppSizes } from '@theme/';
+import {AppColors, AppStyles, AppSizes} from '@theme/';
 
 export default {
   // App Details
-  appName: 'Starter Kit',
+  appName : 'Kongklang',
 
   // Build Configuration - eg. Debug or Release?
-  DEV: __DEV__,
+  DEV : __DEV__,
 
   // Google Analytics - uses a 'dev' account while we're testing
-  gaTrackingId: (__DEV__) ? 'UA-84284256-2' : 'UA-84284256-1',
+  gaTrackingId : (__DEV__)
+    ? 'UA-84284256-2'
+    : 'UA-84284256-1',
 
   // URLs
-  urls: {
-  },
+  urls : {},
 
   // Navbar Props
-  navbarProps: {
+  navbarProps : {
     hideNavBar: false,
     titleStyle: AppStyles.navbarTitle,
     navigationBarStyle: AppStyles.navbar,
@@ -30,7 +31,9 @@ export default {
     rightButtonIconStyle: AppStyles.navbarButton,
     sceneStyle: {
       backgroundColor: AppColors.background,
-      paddingTop: AppSizes.navbarHeight,
-    },
+      paddingTop: AppSizes.navbarHeight
+    }
   },
+
+ 
 };

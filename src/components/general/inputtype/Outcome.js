@@ -10,6 +10,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
+// import DateTimePicker from 'react-native-modal-datetime-picker';
+import PhotoUpload from 'react-native-photo-upload'
 import {
   View,
   StyleSheet,
@@ -18,7 +20,9 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   TextInput,
-  Platform
+  Platform,
+  TouchableOpacity,
+  Image 
 } from 'react-native';
 // Components
 import {
@@ -81,12 +85,22 @@ class Outcome extends Component {
     onNavigationStateChange: null
   }
 
+  // _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+  // _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+  // _handleDatePicked = (date) => {
+  //   console.log('A date has been picked: ', date);
+  //   this._hideDateTimePicker();
+  // };
+
   constructor(props) {
     super(props);
 
     this.state = {
       loading: true,
-      floatshow: true
+      floatshow: true,
+      //isDateTimePickerVisible: false,
     };
   }
 
@@ -135,56 +149,86 @@ class Outcome extends Component {
       return <Loading />;
     return (
       <View style={styles.container}>
-            <KeyboardAvoidingView behavior="height" style={styles.container}>
-               <ScrollView
+        <KeyboardAvoidingView behavior="height" style={{flexGrow: 1}}>
+          <ScrollView
             automaticallyAdjustContentInsets={true}
-            style={[AppStyles.container]}>
+          style={styles.container}>
 
-        <View
-          style={{
-            marginTop: (Platform.OS === 'ios') ? 60 : 50,
-            backgroundColor: '#26A65B',
-            alignItems: 'center',
-            padding: 30
-          }}>
-          <TextInput
-            style={{
-              fontFamily: 'Roboto-Black',
-              fontWeight: 'bold',
-              textAlign: 'center',
-              width: 250,
-              fontSize: 50,
-              color: '#FFF',
-              borderWidth: 0
-            }}
-            keyboardType='numeric'
-            value='1205000' />
-          <Text
-            style={{
-              color: '#FFFFFF',
-              fontSize: 20
-            }}>THB</Text>
-        </View>
-    
-         
+            <View
+              style={{
+                marginTop: (Platform.OS === 'ios') ? 60 : 50,
+                backgroundColor: '#26A65B',
+                alignItems: 'center',
+                padding: 30
+              }}>
+              <TextInput
+                style={{
+                  fontFamily: 'Roboto-Black',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  width: 250,
+                  fontSize: 50,
+                  color: '#FFF',
+                  borderWidth: 0
+                }}
+                keyboardType='numeric'
+                value='1205000' />
+              <Text
+                style={{
+                  color: '#FFFFFF',
+                  fontSize: 20
+                }}>THB</Text>
+            </View>
+
+
             <View style={[AppStyles.paddingHorizontal]}>
               <FormLabel><Icon name={'md-create'} size={15} color={'#000000'} /> {' บันทึกเพิ่มเติม'}</FormLabel>
               <FormInput />
 
               <Spacer size={10} />
 
-              <FormLabel><Icon name={'md-pin'} size={15} color={'#000000'} /> {' สถานที่'}</FormLabel>
-              <FormInput />
+              {/* <FormLabel><Icon name={'md-pin'} size={15} color={'#000000'} /> {' สถานที่'}</FormLabel>
 
-              <FormLabel><Icon name={'md-calendar'} size={15} color={'#000000'} /> {' วัน/เวลา'}</FormLabel>
-              <FormInput />
+              <FormInput /> */}
 
+
+              {/* <FormLabel><Icon name={'md-calendar'} size={15} color={'#000000'} /> {' วัน/เวลา'}</FormLabel> */}
+              {/* <TouchableOpacity onPress={this._showDateTimePicker}>
+                <FormInput editable={false} />
+              </TouchableOpacity> */}
               <FormLabel><Icon name={'md-attach'} size={15} color={'#000000'} /> {' แนบรูปสลิป'}</FormLabel>
-              <FormInput />
-
+                <Spacer size={20} />
+              <PhotoUpload
+                onPhotoSelect={avatar => {
+                  if (avatar) {
+                    console.log('Image base64 string: ', avatar)
+                  }
+                }}
+              >
+                <Image
+                  style={{ 
+                    width: 250,
+                    height: 180,
+                    borderRadius: 15
+                  }}
+                  resizeMode='cover'
+                  source={{
+                    uri: 'http://via.placeholder.com/250x180'
+                  }}
+                />
+              </PhotoUpload>
+                <Spacer size={50} />
+              {/* <View style={{ flex: 1 }}> */}
+              {/* <DateTimePicker
+                  mode={'datetime'}
+                  isVisible={this.state.isDateTimePickerVisible}
+                  onConfirm={this._handleDatePicked}
+                  onCancel={this._hideDateTimePicker}
+                /> */}
+              {/* </View> */}
             </View>
             <Spacer size={50} />
-          </ScrollView> 
+          </ScrollView>
         </KeyboardAvoidingView>
         {this.floatbutton()}
       </View>

@@ -18,6 +18,7 @@ import {NavbarMenuButton} from '@containers/ui/NavbarMenuButton/NavbarMenuButton
 
 // Scenes
 import Placeholder from '@components/general/Placeholder';
+import Privilege from '@components/general/Privilege';
 import Home from '@components/general/Home';
 import Error from '@components/general/Error';
 import StyleGuide from '@containers/StyleGuideView';
@@ -49,10 +50,10 @@ const scenes = (
     })}/>
 
     <Scene
-      key={'timeline'}
+      key={'rr'}
       {...navbarPropsTabs}
       title={'PRIVILEGE'}
-      component={Placeholder}
+      component={Privilege}
       icon={props => TabIcon({
       ...props,
       icon: 'card-giftcard',

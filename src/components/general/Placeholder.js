@@ -22,7 +22,7 @@ import { Text } from '@ui/';
 const Placeholder = ({ text,aaa }) => (
   <View style={[AppStyles.container, AppStyles.containerCentered]}>
     <Text>{text}</Text>
-    <Text>{aaa}</Text>
+    {/* <Text>{aaa}</Text> */}
   </View>
 );
 

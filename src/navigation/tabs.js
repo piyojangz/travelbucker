@@ -19,6 +19,7 @@ import {NavbarMenuButton} from '@containers/ui/NavbarMenuButton/NavbarMenuButton
 // Scenes
 import Placeholder from '@components/general/Placeholder';
 import Privilege from '@components/general/Privilege';
+import Profile from '@components/general/Profile';
 import Home from '@components/general/Home';
 import Error from '@components/general/Error';
 import StyleGuide from '@containers/StyleGuideView';
@@ -50,7 +51,7 @@ const scenes = (
     })}/>
 
     <Scene
-      key={'rr'}
+      key={'Privilege'}
       {...navbarPropsTabs}
       title={'PRIVILEGE'}
       component={Privilege}
@@ -59,7 +60,7 @@ const scenes = (
       icon: 'card-giftcard',
       title: 'PRIVILEGE'
     })}
-      analyticsDesc={'Placeholder: Coming Soon'}/>
+      analyticsDesc={'Privilege: Privilege'}/>
 
     <Scene
       key={'error'}
@@ -74,16 +75,16 @@ const scenes = (
       analyticsDesc={'Error: Example Error'}/>
 
     <Scene
-      key={'styleGuide'}
+      key={'Profile'}
       {...navbarPropsTabs}
-      title={'Style Guide'}
-      component={StyleGuide}
+      title={'PROFILE'}
+      component={Profile}
       icon={props => TabIcon({
       ...props, 
       icon: 'face',
       title: 'PROFILE'
     })}
-      analyticsDesc={'StyleGuide: Style Guide'}/>
+      analyticsDesc={'Profile:Profile'}/>
   </Scene>
 );
 

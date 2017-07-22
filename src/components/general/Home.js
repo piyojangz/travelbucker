@@ -35,7 +35,7 @@ import {Actions} from 'react-native-router-flux';
 const styles = StyleSheet.create({
   // Tab Styles
   tabContainer: {
-    flex: 1
+    flex: 1,
   },
   tabbar: {
     backgroundColor: AppColors.brand.primary
@@ -703,13 +703,13 @@ class Home extends Component {
           <View style={styles.tabContainer}>
             <ListView
               contentContainerStyle={{
-              flex: 1
+               
             }}
               dataSource={this.state.dataSource}
               renderRow={this
               .renderUserRow
-              .bind(this)}/>
-            <Spacer size={50}/>
+              .bind(this)}/> 
+  <Spacer size={50}/>
           </View>
         );
 
@@ -718,13 +718,14 @@ class Home extends Component {
           <View style={styles.tabContainer}>
             <ListView
               contentContainerStyle={{
-              flex: 1
+        
             }}
               dataSource={this.state.HistorydataSource}
               renderRow={this
               .renderHistoryRow
-              .bind(this)}/>
-            <Spacer size={50}/>
+              .bind(this)}/> 
+
+                   <Spacer size={50}/>
           </View>
         );
     }

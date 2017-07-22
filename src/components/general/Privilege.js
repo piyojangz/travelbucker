@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   // Tab Styles
   tabContainer: {
     flex: 1,
-    marginBottom:10,
+    marginBottom:15,
   },
   tabbar: {
     backgroundColor: AppColors.brand.primary,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 const dummyData1 = [
   {
     title: 'หัวหิน',
-    img: 'http://images.thaiza.com/36/36_20131112113748..jpg',
+    img: 'https://wm.thaibuffer.com/o/image/Travel_1/sea/hunhun.jpg',
   },
   {
     title: 'ภูเก็ต',
@@ -73,11 +73,11 @@ const dummyData1 = [
   },
   {
     title: 'สมุย',
-    img: 'http://phuket.thai-sale.com/wp-content/uploads/2014/08/samui2.jpg?039e20?039e20',
+    img: 'https://images.trvl-media.com/hotels/3000000/2670000/2666000/2665914/dd737ebe_z.jpg',
   },
   {
     title: 'พัทยา / เกาะล้าน',
-    img: 'http://ipattaya.co/wp-content/uploads/2016/01/%E0%B8%97%E0%B9%88%E0%B8%B2%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B9%80%E0%B8%81%E0%B8%B2%E0%B8%B0%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AB%E0%B8%B2%E0%B8%94%E0%B8%AA%E0%B8%B1%E0%B8%87%E0%B8%A7%E0%B8%B2%E0%B8%A3.jpg',
+    img: 'https://img.kapook.com/u/sutasinee/15/6.02.56/14.jpg',
   },
 ];
 
@@ -118,10 +118,8 @@ class Privilege extends Component {
   renderRow = (data, sectionID) => (
     <TouchableOpacity
       onPress={Actions.comingSoon}
-      style={{
-        flexDirection: 'row',
-        marginBottom: 5,
-        backgroundColor: '#FFFFFF'
+      style={{  
+        marginBottom: 5, 
       }}>
       <Image
         style={styles.backgroundImage}
@@ -132,14 +130,13 @@ class Privilege extends Component {
         <View style={{
           flex: 1,
           flexDirection: 'column',
-          justifyContent: 'center',
-
-
+          justifyContent: 'center', 
         }}>
           <Text style={{
             textAlign: 'center',
             fontSize: 18,
-            color: '#ffffff'
+            color: '#ffffff',
+            backgroundColor: 'rgba(0,0,0,0)',
           }}>{data.title}</Text>
 
         </View>
@@ -150,6 +147,7 @@ class Privilege extends Component {
           color={'#FFFFFF'}
           style={{
             position: 'absolute',
+            backgroundColor: 'rgba(0,0,0,0)',
             right: 10,
             top: 45
           }} />

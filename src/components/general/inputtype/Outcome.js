@@ -159,16 +159,17 @@ class Outcome extends Component {
                 marginTop: (Platform.OS === 'ios') ? 60 : 50,
                 backgroundColor: '#26A65B',
                 alignItems: 'center',
+                height:120,
                 padding: 30
               }}>
               <TextInput
                 style={{
                   fontFamily: 'Roboto-Black',
                   fontWeight: 'bold',
-                  textAlign: 'center',
-                  width: 250,
+                  textAlign: 'center',  
                   fontSize: 50,
-                  color: '#FFF',
+                  height:50,
+                  color: '#FFF', 
                   borderWidth: 0
                 }}
                 keyboardType='numeric'
@@ -209,11 +210,12 @@ class Outcome extends Component {
                   style={{ 
                     width: 250,
                     height: 180,
-                    borderRadius: 15
+                    borderRadius: 15,
+                    backgroundColor:'silver'
                   }}
                   resizeMode='cover'
                   source={{
-                    uri: 'http://via.placeholder.com/250x180'
+                    uri: 'https://via.placeholder.com/250x180'
                   }}
                 />
               </PhotoUpload>

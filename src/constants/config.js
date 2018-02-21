@@ -5,25 +5,33 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 /* global __DEV__ */
-import {AppColors, AppStyles, AppSizes} from '@theme/';
+import { AppColors, AppStyles, AppSizes } from '@theme/';
 
 export default {
   // App Details
-  appName : 'Kongklang',
+  appName: 'TravelBucker',
 
   // Build Configuration - eg. Debug or Release?
-  DEV : __DEV__,
+  DEV: __DEV__,
 
   // Google Analytics - uses a 'dev' account while we're testing
-  gaTrackingId : (__DEV__)
+  gaTrackingId: (__DEV__)
     ? 'UA-84284256-2'
     : 'UA-84284256-1',
 
   // URLs
-  urls : {},
+  urls: {},
+api: 'https://www.servewellsolution.com/hpocket/',
+imgaddress: 'https://www.servewellsolution.com/hpocket/public/uploads/trip_img/',
+avatarblank: 'https://www.servewellsolution.com/hpocket/public/uploads/trip_img/avatar-blank.jpg',
+
+
+  // api:'http://localhost/hangpocket/',
+  // imgaddress: 'http://localhost/hangpocket/public/uploads/trip_img/',
+  // avatarblank: 'http://localhost/hangpocket/public/uploads/trip_img/avatar-blank.jpg',
 
   // Navbar Props
-  navbarProps : {
+  navbarProps: {
     hideNavBar: false,
     titleStyle: AppStyles.navbarTitle,
     navigationBarStyle: AppStyles.navbar,
@@ -35,5 +43,5 @@ export default {
     }
   },
 
- 
+
 };

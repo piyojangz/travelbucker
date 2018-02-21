@@ -20,9 +20,7 @@ import { AppColors, AppStyles } from '@theme/';
 
 // Components
 import Loading from '@components/general/Loading';
-import Error from '@components/general/Error';
-// Actions
-import * as RecipeActions from '@redux/recipes/actions';
+import Error from '@components/general/Error'; 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   container: {
@@ -30,18 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
-/* Redux ==================================================================== */
-// What data from the store shall we send to the component?
-const mapStateToProps = state => ({
-  meals: state.recipe.meals || [],
-});
-
-// Any actions to map to the component?
-const mapDispatchToProps = {
-  getMeals: RecipeActions.getMeals,
-};
-
+ 
 
 
 /* Component ==================================================================== */
@@ -109,4 +96,4 @@ class AppWebView extends Component {
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, mapDispatchToProps)(AppWebView);
+export default AppWebView;

@@ -8,25 +8,34 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Icon} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
-  Text,View
+  Text, View
 } from 'react-native';
-
-import {AppColors} from '@theme/';
+import CustomBadge from '../../badge/Badge';
+import { AppColors } from '@theme/';
 
 /* Component ==================================================================== */
-const TabIcon = ({icon,title, selected}) => (
-  <View>
-<Icon
-  name={icon}
-  title={title}
-  size={26}
-  color={selected
-  ? AppColors.tabbar.iconSelected
-  : AppColors.tabbar.iconDefault}/><Text style={{fontSize:9,color:selected
-  ? AppColors.tabbar.iconSelected
-  : AppColors.tabbar.iconDefault}}>{title}</Text></View>);
+const TabIcon = ({ icon, title, selected }) => (
+  <View style={{ justifyContent: 'center', alignContent: 'center',  flex: 1 }}>
+    <View style={{ justifyContent: 'center', alignContent: 'center', flexDirection:'row',marginBottom:2}}>
+      <Icon
+        name={icon}
+        title={title}
+        size={22}
+        color={selected
+          ? AppColors.tabbar.iconSelected
+          : AppColors.tabbar.iconDefault} />
+    </View>
+    <Text style={{
+      fontSize: 9, color: selected
+        ? AppColors.tabbar.iconSelected
+        : AppColors.tabbar.iconDefault
+    }}>
+      {title}
+    </Text>
+    <CustomBadge title={title} />
+  </View>);
 
 TabIcon.propTypes = {
   icon: PropTypes.string.isRequired,

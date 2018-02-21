@@ -16,19 +16,19 @@ const base = {
   lineHeight: lineHeight(20),
   ...Platform.select({
     ios: {
-      family: 'supermarket',
+      family: 'helvetica',
     },
     android: {
-      family: 'supermarket',
+      family: 'roboto',
     },
   }),
 };
 
 export default {
   base: { ...base },
-  h1: { ...base, size: base.size * 1.75, lineHeight: lineHeight(base.size * 2) },
-  h2: { ...base, size: base.size * 1.5, lineHeight: lineHeight(base.size * 1.75) },
-  h3: { ...base, size: base.size * 1.25, lineHeight: lineHeight(base.size * 1.5) },
-  h4: { ...base, size: base.size * 1.1, lineHeight: lineHeight(base.size * 1.25) },
+  h1: { ...base, size: base.size * 1.75, lineHeight: lineHeight(base.size * 2.5) },
+  h2: { ...base, size: base.size * 1.5, lineHeight: lineHeight(base.size * 1.95) },
+  h3: { ...base, size: base.size * 1.25, lineHeight: lineHeight(base.size * 1.75) },
+  h4: { ...base, size: base.size * 1.1, lineHeight: lineHeight(base.size * 1.55) },
   h5: { ...base },
 };

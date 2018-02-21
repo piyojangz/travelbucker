@@ -15,10 +15,11 @@ import {
   Alert,
   StatusBar,
   StyleSheet,
+  AsyncStorage,
   ActivityIndicator,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
+import * as appdataActions from '@redux/appdata/actions';
 // Consts and Libs
 import { AppStyles, AppSizes } from '@theme/';
 
@@ -30,33 +31,43 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
+
+
+
 /* Component ==================================================================== */
 class AppLaunch extends Component {
   static componentName = 'AppLaunch';
 
-  static propTypes = {
-    login: PropTypes.func.isRequired,
-    getRecipes: PropTypes.func.isRequired,
-    getMeals: PropTypes.func.isRequired,
-  }
 
   componentDidMount = () => {
     // Show status bar on app launch
     StatusBar.setHidden(false, true);
 
-    // Preload content here
-    Promise.all([
-      this.props.getMeals(),
-      this.props.getRecipes(),
-    ]).then(() => {
-      // Once we've preloaded basic content,
-      // - Try to authenticate based on existing token
-      this.props.login()
-        // Logged in, show index screen
-        .then(() => Actions.app({ type: 'reset' }))
-        // Not Logged in, show Login screen
-        .catch(() => Actions.authenticate({ type: 'reset' }));
-    }).catch(err => Alert.alert(err.message));
+    AsyncStorage.getItem("userdetail").then((value) => {
+      if (value != null) {
+        val = JSON.parse(value); 
+        if (val.islogin == '1') {
+          this
+            .props
+            .dispatch({
+              type: 'USER', user: val
+            });
+            Actions.app({ type: 'reset' });
+        }
+        else {
+          Actions.authenticate({ type: 'reset' })
+        }
+      }
+      else {
+        Actions.authenticate({ type: 'reset' })
+      }
+    });
+
+
+
+
   }
 
   render = () => (

@@ -11,7 +11,7 @@ import Sizes from './sizes';
 
 export default {
   appContainer: {
-    backgroundColor: '#000',
+    backgroundColor: '#FFF',
   },
 
   // Default
@@ -228,7 +228,7 @@ export default {
   navbarTitle: {
     color: '#ffffff',
     fontWeight: 'bold',
-    fontFamily: 'Roboto-Bold',
+    fontFamily: Fonts.base.family,
     paddingTop:0,
     fontSize: 18,
   },

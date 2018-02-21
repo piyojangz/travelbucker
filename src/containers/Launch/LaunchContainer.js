@@ -6,22 +6,18 @@
  */
 import { connect } from 'react-redux';
 
-// Actions
-import * as UserActions from '@redux/user/actions';
-import * as RecipeActions from '@redux/recipes/actions';
 
 // The component we're mapping to
 import AppLaunchRender from './LaunchView';
-
-// What data from the store shall we send to the component?
-const mapStateToProps = () => ({
+import * as appdataActions from '@redux/appdata/actions';
+const mapStateToProps = state => ({
+  _user: state.appdataReducer.user
 });
 
-// Any actions to map to the component?
+
 const mapDispatchToProps = {
-  login: UserActions.login,
-  getRecipes: RecipeActions.getRecipes,
-  getMeals: RecipeActions.getMeals,
+  user: appdataActions.user
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppLaunchRender);

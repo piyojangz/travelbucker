@@ -92,12 +92,16 @@ def enableProguardInReleaseBuilds = false
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
-
+    dexOptions {
+        incremental = true;
+        preDexLibraries = false
+        javaMaxHeapSize "2g"
+    }
     defaultConfig {
         applicationId "com.thaiwebdevelop.gangbucker"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 112
+        versionCode 113
         vectorDrawables.useSupportLibrary = true
         versionName "1.0"
         ndk {

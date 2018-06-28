@@ -21,9 +21,9 @@ export default {
 
   // URLs
   urls: {},
-api: 'https://www.servewellsolution.com/hpocket/',
-imgaddress: 'https://www.servewellsolution.com/hpocket/public/uploads/trip_img/',
-avatarblank: 'https://www.servewellsolution.com/hpocket/public/uploads/trip_img/avatar-blank.jpg',
+api: 'https://hpocket.thaiwebdevelop.com/',
+imgaddress: 'https://hpocket.thaiwebdevelop.com//public/uploads/trip_img/',
+avatarblank: 'https://hpocket.thaiwebdevelop.com/public/uploads/trip_img/avatar-blank.jpg',
 
 
   // api:'http://localhost/hangpocket/',

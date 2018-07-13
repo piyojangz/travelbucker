@@ -58,7 +58,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>TravelBucker would like to use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>TravelBucker would like to your microphone (for videos)</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

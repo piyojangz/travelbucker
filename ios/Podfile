@@ -13,8 +13,8 @@ target 'StarterKit' do
  pod 'RSKImageCropper'
  pod 'QBImagePickerController'
  use_frameworks!
- pod 'Charts', '3.0.3'
- pod 'SwiftyJSON', '3.1.4'
+ pod 'SwiftyJSON', '3.1.4'      # 4.0.0
+ pod 'Charts', '3.0.3'          # 3.1.1
 
  
 
@@ -26,8 +26,8 @@ inherit! :search_paths
     pod 'Firebase/Database', '4.0.4'
     pod 'Firebase/Messaging', '4.0.4'
     pod 'FirebaseInstanceID', '2.0.0'
-   pod 'Charts', '3.0.3'
-   pod 'SwiftyJSON', '3.1.4'
+    pod 'SwiftyJSON', '3.1.4'      # 4.0.0
+    pod 'Charts', '3.0.3'          # 3.1.1
   end
 
 end

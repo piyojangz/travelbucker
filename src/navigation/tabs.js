@@ -43,7 +43,7 @@ const scenes = (
       component={Home}
       icon={props => TabIcon({
         ...props,
-        icon: 'compass',
+        icon: 'flag-o',
         title: 'ONGOING'
       })} />
 
@@ -80,7 +80,7 @@ const scenes = (
       component={Profile}
       icon={props => TabIcon({
         ...props,
-        icon: 'user-circle-o',
+        icon: 'ellipsis-h',
         title: 'PROFILE'
       })}
       analyticsDesc={'Profile:Profile'} />

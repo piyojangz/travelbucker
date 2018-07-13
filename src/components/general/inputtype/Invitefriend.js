@@ -345,8 +345,8 @@ class Invitefriend extends Component {
       serchwith: x,
       tripid: this.props.parentObj.id,
     };
-    this.setState({ x: x });
-    //console.log(params);
+ 
+    this.setState({ x: x }); 
     var formData = new FormData();
 
     for (var k in params) {
@@ -471,6 +471,7 @@ class Invitefriend extends Component {
 
 
         </View>
+        <Spacer size={50} />
         <SleekLoadingIndicator loading={this.state.loading} />
       </View>
     );

@@ -380,7 +380,7 @@ class Profile extends Component {
               lineColor={AppColors.brand.primary}
               timeStyle={{ fontSize: 12, }}
               titleStyle={{ lineHeight: 22, fontSize: 16 }}
-              descriptionStyle={{ lineHeight: 16, color: '#666' }}
+              descriptionStyle={{ lineHeight: 16, color: '#666' ,marginBottom:10}}
               onEventPress={this.onEventPress}
               options={{
                 refreshControl: (
@@ -419,7 +419,7 @@ class Profile extends Component {
               lineColor={'#aaa'}
               timeStyle={{ fontSize: 12, }}
               titleStyle={{ lineHeight: 22, fontSize: 16, color: '#aaa' }}
-              descriptionStyle={{ lineHeight: 16, color: '#aaa' }}
+              descriptionStyle={{ lineHeight: 16, color: '#aaa',marginBottom:10 }}
               timeStyle={{ color: '#aaa' }}
               onEventPress={this.onEventPress}
               options={{
@@ -429,7 +429,7 @@ class Profile extends Component {
                     onRefresh={this._onRefresh.bind(this)}
                   />
                 ),
-                style: { padding: 15, marginTop: Platform.OS == 'ios' ? 0 : 15, marginLeft: Platform.OS == 'ios' ? 0 : 15, marginRight: Platform.OS == 'ios' ? 0 : 15 }
+                style: { padding: 15,marginTop: Platform.OS == 'ios' ? 0 : 15, marginLeft: Platform.OS == 'ios' ? 0 : 15, marginRight: Platform.OS == 'ios' ? 0 : 15 }
               }}
               data={this.state.past}
               enableEmptySections={true}

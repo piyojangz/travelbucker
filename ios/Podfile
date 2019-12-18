@@ -4,31 +4,21 @@
 target 'StarterKit' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   #use_frameworks!
-
   # Pods for StarterKit
-  pod 'Firebase/Core', '4.0.4'
-  pod 'Firebase/Database', '4.0.4'
-  pod 'Firebase/Messaging', '4.0.4'
-  pod 'FirebaseInstanceID', '2.0.0'
+  pod 'Firebase/Core', '~> 5.2.0'
+    pod 'FirebaseAnalytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crash'
+  pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Storage'
+  
+pod 'FBSDKCoreKit', '5.8.0'
+ pod 'FBSDKLoginKit', '5.8.0'
+ pod 'FBSDKShareKit', '5.8.0'
  pod 'RSKImageCropper'
- pod 'QBImagePickerController'
- use_frameworks!
- pod 'SwiftyJSON', '3.1.4'      # 4.0.0
- pod 'Charts', '3.0.3'          # 3.1.1
-
- 
-
-
-  target 'StarterKitTests' do
-inherit! :search_paths
-    # Pods for testing
-    pod 'Firebase/Core', '4.0.4'
-    pod 'Firebase/Database', '4.0.4'
-    pod 'Firebase/Messaging', '4.0.4'
-    pod 'FirebaseInstanceID', '2.0.0'
-    pod 'SwiftyJSON', '3.1.4'      # 4.0.0
-    pod 'Charts', '3.0.3'          # 3.1.1
-  end
+ pod 'QBImagePickerController'   
 
 end
 

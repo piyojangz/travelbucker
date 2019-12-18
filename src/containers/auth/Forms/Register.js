@@ -38,7 +38,7 @@ import {
 } from '@components/ui/';
 import { AppConfig } from '@constants/';
 import NavigationBar from 'react-native-navigation-bar';
-import { FBLoginManager } from 'react-native-facebook-login';
+// import { FBLoginManager } from 'react-native-facebook-login';
 // Consts and Libs
 import { AppColors, AppStyles, AppSizes } from '@theme/';
 import { Grid, Col, Row } from 'react-native-easy-grid';

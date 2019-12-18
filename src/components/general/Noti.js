@@ -371,8 +371,7 @@ class Noti extends Component {
 
   render = () => (
     <View style={{ marginTop: (Platform.OS === 'ios') ? -65 : -54, flex: 1, backgroundColor: '#F7F9FB' }}>
-      <NavigationBar
-        title={'Notification'}
+      <NavigationBar 
         height={(Platform.OS === 'ios') ? 44 : 64}
         titleColor={'#fff'}
         backgroundColor={AppColors.brand.primary}

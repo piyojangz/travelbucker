@@ -9,10 +9,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as appdataActions from '@redux/appdata/actions';
-import { connect } from 'react-redux';
-import { PieChart } from 'react-native-charts-wrapper';
+import { connect } from 'react-redux'; 
 import { AppConfig } from '@constants/';
-import { StackNavigator, SafeAreaView } from 'react-navigation';
+import { StackNavigator, SafeAreaView } from 'react-navigation'; 
 import {
   View,
   StyleSheet,
@@ -123,7 +122,7 @@ class Piechart extends Component {
             <Text> {this.state.selectedEntry}</Text>
           </View> */}
         <View style={styles.container}>
-          <PieChart
+          {/* <PieChart
             style={styles.chart}
             logEnabled={true}
             chartBackgroundColor={processColor('white')}
@@ -146,7 +145,8 @@ class Piechart extends Component {
             maxAngle={350}
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}
-          />
+          /> */}
+          
         </View>
       </SafeAreaView>
     )

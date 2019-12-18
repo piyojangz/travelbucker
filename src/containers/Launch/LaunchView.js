@@ -14,6 +14,7 @@ import {
   Image,
   Alert,
   StatusBar,
+  ImageBackground,
   StyleSheet,
   AsyncStorage,
   ActivityIndicator,

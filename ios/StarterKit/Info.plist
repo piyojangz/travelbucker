@@ -35,6 +35,8 @@
 	<string>683913821804645</string>
 	<key>FacebookDisplayName</key>
 	<string>TravelPocket</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -59,8 +61,6 @@
 	<string>TravelBucker would like to use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>TravelBucker would like to your microphone (for videos)</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

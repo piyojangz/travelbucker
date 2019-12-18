@@ -27,7 +27,7 @@ import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import * as Animatable from 'react-native-animatable';
 import { SocialIcon } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import { FBLoginManager } from 'react-native-facebook-login';
+// import { FBLoginManager } from 'react-native-facebook-login';
 import { AppSizes } from '@theme/';
 import GridView from 'react-native-easy-gridview';
 import Timeline from 'react-native-timeline-listview'
@@ -47,7 +47,11 @@ import {
 } from '@components/ui/';
 // Consts and Libs
 import { AppColors, AppStyles } from '@theme/';
-
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginManager,
+} = FBSDK;
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   // Tab Styles
@@ -227,13 +231,7 @@ class Profile extends Component {
         {
           text: 'OK', onPress: () => {
             this.setState({ loading: true, });
-            FBLoginManager.logout(function (error, data) {
-              if (!error) {
-              } else {
-                console.log(error, data);
-              }
-            });
-
+            LoginManager.logOut();
             this.setState({
               loading: false,
             });
@@ -612,9 +610,8 @@ class Profile extends Component {
 
     return (
       <View style={{ marginTop: (Platform.OS === 'ios') ? -65 : -54, flex: 1, backgroundColor: '#F7F9FB' }}>
-        <NavigationBar
-          title={'Profile'}
-          height={(Platform.OS === 'ios') ? 44 : 64}
+        <NavigationBar 
+          height={(Platform.OS === 'ios') ? 64 : 64}
           titleColor={'#fff'}
           backgroundColor={AppColors.brand.primary}
           rightButtonTitle={'Logout'}

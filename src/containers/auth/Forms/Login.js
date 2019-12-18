@@ -38,7 +38,7 @@ import {
 } from '@components/ui/';
 import { AppConfig } from '@constants/';
 import NavigationBar from 'react-native-navigation-bar';
-import { FBLoginManager } from 'react-native-facebook-login';
+
 // Consts and Libs
 import { AppColors, AppStyles, AppSizes } from '@theme/';
 import { Grid, Col, Row } from 'react-native-easy-grid';
@@ -48,6 +48,12 @@ import Error from '@components/general/Error';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as appdataActions from '@redux/appdata/actions';
 import { Actions } from 'react-native-router-flux';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginManager,
+} = FBSDK;
+
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   container: {
@@ -113,27 +119,39 @@ class Login extends Component {
   fblogin = () => {
     var _this = this;
     this.setState({ loading: true, });
-    FBLoginManager.loginWithPermissions(["email", "user_friends", "public_profile"], function (error, data) {
-      if (!error) {
-        var user = data.credentials;
-        var api = 'https://graph.facebook.com/v2.3/' + user.userId + '?fields=email,name,gender&edirect=false&access_token=' + user.token + '';
-        fetch(api)
-          .then((response) => response.json())
-          .then((responseData) => {
-            _this.setState({
-              fbid: responseData.id,
-              name: responseData.name,
-              gender: responseData.gender,
-              email: responseData.email,
-            });
-            _this.registeruser();
-          })
-          .done();
-      } else {
-        _this.setState({ loading: false, });
+    LoginManager.logInWithPermissions(["email", "public_profile"]).then(
+      function (result) {
+        if (result.isCancelled) {
+          alert('Login was cancelled');
+        } else {
+          // alert('Login was successful with permissions: '
+          //   + result.grantedPermissions.toString()); 
+          console.log('datadatadata', result);
+          AccessToken.getCurrentAccessToken().then(
+            (data) => {
+              console.log(data)
+              var api = 'https://graph.facebook.com/v2.3/' + data.userID + '?fields=email,name,gender&edirect=false&access_token=' + data.accessToken + '';
+              fetch(api)
+                .then((response) => response.json())
+                .then((responseData) => {
+                  _this.setState({
+                    fbid: responseData.id,
+                    name: responseData.name,
+                    gender: responseData.gender,
+                    email: responseData.email,
+                  });
+                  _this.registeruser();
+                })
+                .done();
+            }
+          )
+        }
+      },
+      function (error) {
         console.log("Error: ", error);
+        _this.setState({ loading: false, });
       }
-    })
+    );
   }
 
   registeruser = () => {
@@ -204,6 +222,8 @@ class Login extends Component {
       },
       body: formData
     };
+
+    console.log('requestrequest', request);
     fetch(AppConfig.api + 'api/login', request).then((response) => {
       return response.json() // << This is the problem
     })
@@ -253,6 +273,7 @@ class Login extends Component {
           },
           body: formData
         };
+        console.log(AppConfig.api + 'api/login')
         fetch(AppConfig.api + 'api/login', request).then((response) => {
           return response.json() // << This is the problem
         })
@@ -306,13 +327,13 @@ class Login extends Component {
 
   render = () => {
     return (
-      <View style={{ marginTop: -65, flex: 1,backgroundColor:AppColors.brand.primary }}>
-          
+      <View style={{ marginTop: -65, flex: 1, backgroundColor: AppColors.brand.primary }}>
+
         <ScrollView style={{ flexGrow: 1, height: AppSizes.screen.height, }}>
-          <View style={{ flex: 1,   flexDirection: 'column', justifyContent: 'center' }}>
+          <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
             <View style={{ flexDirection: 'column', alignItems: 'center', }}>
               <View style={{ width: (AppSizes.screen.width - 60), }}>
-                <View style={{justifyContent:'center',alignContent:'center',flexDirection:'row',flex:1,padding:20,marginTop:25,}}>
+                <View style={{ justifyContent: 'center', alignContent: 'center', flexDirection: 'row', flex: 1, padding: 20, marginTop: 25, }}>
                   <Image
                     style={{
                       height: 130,
@@ -324,22 +345,22 @@ class Login extends Component {
                     source={require('@images/applogo.png')} />
                 </View>
                 <Text
-                    style={{
-                      textAlign:'center',
-                      color: '#fff',
-                      fontSize: 16,
-                      fontWeight: "bold",
-                      fontFamily: 'Helvetica Neue',
-                    }}>เงินกองกลางไม่ใช่เรื่องยากอีกต่อไป</Text>
-                    <Spacer size={20} />
+                  style={{
+                    textAlign: 'center',
+                    color: '#fff',
+                    fontSize: 16,
+                    fontWeight: "bold",
+                    fontFamily: 'Helvetica Neue',
+                  }}>เงินกองกลางไม่ใช่เรื่องยากอีกต่อไป</Text>
+                <Spacer size={20} />
                 <View style={[AppStyles.paddingHorizontal]}>
                   <FormLabel>Username</FormLabel>
-                  <FormInput   autoCorrect={false} placeholder='อีเมลล์' onChangeText={email => this.setState({ email })} />
+                  <FormInput autoCorrect={false} placeholder='อีเมลล์' onChangeText={email => this.setState({ email })} />
 
                   <Spacer size={10} />
 
                   <FormLabel>Password</FormLabel>
-                  <FormInput   placeholder='รหัสผ่าน' secureTextEntry={true} onChangeText={password => this.setState({ password })} />
+                  <FormInput placeholder='รหัสผ่าน' secureTextEntry={true} onChangeText={password => this.setState({ password })} />
                 </View>
               </View>
 

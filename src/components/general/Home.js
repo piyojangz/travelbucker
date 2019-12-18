@@ -14,9 +14,11 @@ import PropTypes, { array } from 'prop-types';
 import * as appdataActions from '@redux/appdata/actions';
 import LoadingContainer from 'react-native-loading-container';
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
-import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
+// import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
 import ActionSheet from '@yfuks/react-native-action-sheet';
 import Piechart from '../general/Piechart';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { ifIphoneX } from 'react-native-iphone-x-helper'
 import {
   View,
   Alert,
@@ -27,8 +29,9 @@ import {
   TouchableOpacity,
   ListView,
   TouchableWithoutFeedback,
-  Platform
+  Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import NavigationBar from 'react-native-navigation-bar';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
   // Tab Styles
   tabContainer: {
     flex: 1,
-    backgroundColor: '#F7F9FB'
+    backgroundColor: '#F7F9FB',
   },
   tabbar: {
     backgroundColor: AppColors.brand.primary
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: 30,
+    bottom: ifIphoneX ? 60:30,
     left: (Dimensions.get('window').width / 2) - 30,
   },
   chartview: {
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: 60,
+    bottom: 80,
     right: 20
   },
   floatbuttonhome: {
@@ -153,39 +156,39 @@ const mapDispatchToProps = {
 
 
 // this shall be called regardless of app state: running, background or not running. Won't be called when app is killed by user in iOS
-FCM.on(FCMEvent.Notification, async (notif) => {
-  // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
-  if (notif.local_notification) {
-    //this is a local notification
-  }
-  if (notif.opened_from_tray) {
-    //iOS: app is open/resumed because user clicked banner
-    //Android: app is open/resumed because user clicked banner or tapped app icon
-  }
-  // await someAsyncCall();
+// FCM.on(FCMEvent.Notification, async (notif) => {
+//   // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
+//   if (notif.local_notification) {
+//     //this is a local notification
+//   }
+//   if (notif.opened_from_tray) {
+//     //iOS: app is open/resumed because user clicked banner
+//     //Android: app is open/resumed because user clicked banner or tapped app icon
+//   }
+//   // await someAsyncCall();
 
-  if (Platform.OS === 'ios') {
-    //optional
-    //iOS requires developers to call completionHandler to end notification process. If you do not call it your background remote notifications could be throttled, to read more about it see https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application.
-    //This library handles it for you automatically with default behavior (for remote notification, finish with NoData; for WillPresent, finish depend on "show_in_foreground"). However if you want to return different result, follow the following code to override
-    //notif._notificationType is available for iOS platfrom
-    switch (notif._notificationType) {
-      case NotificationType.Remote:
-        notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
-        break;
-      case NotificationType.NotificationResponse:
-        notif.finish();
-        break;
-      case NotificationType.WillPresent:
-        notif.finish(WillPresentNotificationResult.All) //other types available: WillPresentNotificationResult.None
-        break;
-    }
-  }
-});
-FCM.on(FCMEvent.RefreshToken, (token) => {
-  console.log(token)
-  // fcm token may not be available on first load, catch it here
-});
+//   if (Platform.OS === 'ios') {
+//     //optional
+//     //iOS requires developers to call completionHandler to end notification process. If you do not call it your background remote notifications could be throttled, to read more about it see https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application.
+//     //This library handles it for you automatically with default behavior (for remote notification, finish with NoData; for WillPresent, finish depend on "show_in_foreground"). However if you want to return different result, follow the following code to override
+//     //notif._notificationType is available for iOS platfrom
+//     switch (notif._notificationType) {
+//       case NotificationType.Remote:
+//         notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
+//         break;
+//       case NotificationType.NotificationResponse:
+//         notif.finish();
+//         break;
+//       case NotificationType.WillPresent:
+//         notif.finish(WillPresentNotificationResult.All) //other types available: WillPresentNotificationResult.None
+//         break;
+//     }
+//   }
+// });
+// FCM.on(FCMEvent.RefreshToken, (token) => {
+//   console.log(token)
+//   // fcm token may not be available on first load, catch it here
+// });
 
 /* Component ==================================================================== */
 class Home extends Component {
@@ -252,54 +255,54 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    FCM.requestPermissions();
+    // FCM.requestPermissions();
 
-    FCM.getFCMToken().then(token => {
-      console.log("TOKEN (getFCMToken)", token);
-      this.updatetoken(token);
-    });
+    // FCM.getFCMToken().then(token => {
+    //   console.log("TOKEN (getFCMToken)", token);
+    //   this.updatetoken(token);
+    // });
 
-    FCM.getInitialNotification().then(notif => {
-      console.log("INITIAL NOTIFICATION", notif)
-    });
+    // FCM.getInitialNotification().then(notif => {
+    //   console.log("INITIAL NOTIFICATION", notif)
+    // });
 
-    this.notificationListner = FCM.on(FCMEvent.Notification, notif => {
-      console.log("Notification", notif);
-      if (notif.local_notification) {
-        return;
-      }
-      if (notif.opened_from_tray) {
-        return;
-      }
+    // this.notificationListner = FCM.on(FCMEvent.Notification, notif => {
+    //   console.log("Notification", notif);
+    //   if (notif.local_notification) {
+    //     return;
+    //   }
+    //   if (notif.opened_from_tray) {
+    //     return;
+    //   }
 
-      if (Platform.OS === 'ios') {
-        //optional
-        //iOS requires developers to call completionHandler to end notification process. If you do not call it your background remote notifications could be throttled, to read more about it see the above documentation link.
-        //This library handles it for you automatically with default behavior (for remote notification, finish with NoData; for WillPresent, finish depend on "show_in_foreground"). However if you want to return different result, follow the following code to override
-        //notif._notificationType is available for iOS platfrom
-        switch (notif._notificationType) {
-          case NotificationType.Remote:
-            notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
-            break;
-          case NotificationType.NotificationResponse:
-            notif.finish();
-            break;
-          case NotificationType.WillPresent:
-            notif.finish(WillPresentNotificationResult.All) //other types available: WillPresentNotificationResult.None
-            break;
-        }
-      }
-      this.showLocalNotification(notif);
-    });
+    //   if (Platform.OS === 'ios') {
+    //     //optional
+    //     //iOS requires developers to call completionHandler to end notification process. If you do not call it your background remote notifications could be throttled, to read more about it see the above documentation link.
+    //     //This library handles it for you automatically with default behavior (for remote notification, finish with NoData; for WillPresent, finish depend on "show_in_foreground"). However if you want to return different result, follow the following code to override
+    //     //notif._notificationType is available for iOS platfrom
+    //     switch (notif._notificationType) {
+    //       case NotificationType.Remote:
+    //         notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
+    //         break;
+    //       case NotificationType.NotificationResponse:
+    //         notif.finish();
+    //         break;
+    //       case NotificationType.WillPresent:
+    //         notif.finish(WillPresentNotificationResult.All) //other types available: WillPresentNotificationResult.None
+    //         break;
+    //     }
+    //   }
+    //   this.showLocalNotification(notif);
+    // });
 
-    this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
-      console.log("TOKEN (refreshUnsubscribe)", token);
-    });
+    // this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
+    //   console.log("TOKEN (refreshUnsubscribe)", token);
+    // });
 
-    this.getinvitecnt(this.props._user.id);
-    FCM.setBadgeNumber(0);
+    // this.getinvitecnt(this.props._user.id);
+    // FCM.setBadgeNumber(0);
 
-    this.setState({ floathomeshow: true });
+    // this.setState({ floathomeshow: true });
   }
 
 
@@ -350,8 +353,8 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
-    this.notificationListner.remove();
-    this.refreshTokenListener.remove();
+    // this.notificationListner.remove();
+    // this.refreshTokenListener.remove();
   }
 
 
@@ -1137,10 +1140,9 @@ class Home extends Component {
   renderheader() {
     if (this.props.tripdata) {
       return (
-
         <NavigationBar
           title={''}
-          height={(Platform.OS === 'ios') ? 44 : 64}
+          height={(Platform.OS === 'ios') ? 65 : 54}
           titleColor={'#fff'}
           backgroundColor={AppColors.brand.primary}
           leftButtonIcon={require('../../assets/images/ic_left-arrow.png')}
@@ -1166,7 +1168,7 @@ class Home extends Component {
     return (
       <Text
         style={{
-          marginTop: (this.props.tripdata) ? -30 : 10,
+          marginTop: (this.props.tripdata) ? -30 :  ifIphoneX ? 15 : 10,
           marginBottom: 10,
           backgroundColor: 'rgba(0,0,0,0)',
           fontSize: 18,
@@ -1209,14 +1211,13 @@ class Home extends Component {
       return (
         <View style={{ marginTop: (Platform.OS === 'ios') ? -65 : -54, flex: 1, backgroundColor: '#F7F9FB' }}>
           <NavigationBar
+            height={(Platform.OS === 'ios') ? 65 : 54}
             title={'TravelBucker'}
-            height={(Platform.OS === 'ios') ? 44 : 64}
             titleColor={'#fff'}
             backgroundColor={AppColors.brand.primary}
           />
 
-          <View style={{ marginTop: 64, flex: 1, backgroundColor: '#fff' }}>
-
+          <View style={{ marginTop: (Platform.OS === 'ios') ? 75 : 64, flex: 1, backgroundColor: '#fff' }}>
             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', position: 'absolute', top: (AppSizes.screen.height / 2) - 100, left: 0, right: 0 }}>
               <View style={{ justifyContent: 'center', alignContent: 'center', flexDirection: 'row', flex: 1, paddingBottom: 20 }}>
                 <Image
@@ -1487,9 +1488,15 @@ class Home extends Component {
   }
 
   async _onReadyAsync(data) {
-    console.log(data);
-    if (data.result_trip.ishosted == '1' && data.result_trip.ispassed == '0') {
-      data.result_member.splice(data.result_member.length, 0, {});
+    console.log('get_activetripget_activetrip', data);
+    if (data.result_trip != null) {
+      if (data.result_trip.ishosted == '1' && data.result_trip.ispassed == '0') {
+        data.result_member.splice(data.result_member.length, 0, {});
+      }
+
+      this
+        .props
+        .dispatch({ type: 'SYMBOL', symbol: data.result_trip.symbol });
     }
 
     return new Promise((resolve) => {
@@ -1536,14 +1543,10 @@ class Home extends Component {
         total += parseFloat(data.result_chart.other);
       }
 
-      this
-        .props
-        .dispatch({ type: 'SYMBOL', symbol: data.result_trip.symbol });
-
       this.setState({
         charttotal: total,
         chartdata: charts,
-        activetrip: data.result_trip,
+        activetrip: data.result_trip != null ? data.result_trip : [],
         dataSource: this.state.dataSource.cloneWithRows(data.result_member),
         HistorydataSource: this.state.HistorydataSource.cloneWithRows(data.result_spent),
       }, resolve);
@@ -1553,8 +1556,7 @@ class Home extends Component {
 
   render = () => {
     return (
-
-      <View style={{ flex: 1, }} >
+      <View style={{ flex: 1 }} >
         <LoadingContainer
           onError={e => console.log(e)}
           onLoadStartAsync={this._loadInitialDataAsync.bind(this)}

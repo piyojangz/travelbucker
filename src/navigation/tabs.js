@@ -22,7 +22,7 @@ import Home from '@components/general/Home';
 import Error from '@components/general/Error';
 import StyleGuide from '@containers/StyleGuideView';
 import Noti from '@components/general/Noti';
-
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 const navbarPropsTabs = {
   ...AppConfig.navbarProps
@@ -32,14 +32,14 @@ const navbarPropsTabs = {
 const scenes = (
   <Scene
     key={'tabBar'}
-    tabs
-    tabBarIconContainerStyle={AppStyles.tabbar}
+    tabs 
+    tabBarIconContainerStyle={[AppStyles.tabbar]}
     pressOpacity={0.95}>
     <Scene
       {...navbarPropsTabs}
       key={'mainpage'}
       hideNavBar={true}
-      title={'ONGOING'} 
+      title={'ONGOING'}  
       component={Home}
       icon={props => TabIcon({
         ...props,

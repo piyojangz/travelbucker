@@ -29,34 +29,42 @@
 // Open Radar - http://www.openradar.me/16744288
 // Work around this by redeclaring things here.
 
-#undef cos
-#define cos(__x) __tg_cos(__tg_promote1((__x))(__x))
+#ifdef __tg_promote1
 
-#undef sin
-#define sin(__x) __tg_sin(__tg_promote1((__x))(__x))
+    #undef cos
+    #define cos(__x) __tg_cos(__tg_promote1((__x))(__x))
 
-#undef atan2
-#define atan2(__x, __y) __tg_atan2(__tg_promote2((__x), (__y))(__x), \
-__tg_promote2((__x), (__y))(__y))
+    #undef sin
+    #define sin(__x) __tg_sin(__tg_promote1((__x))(__x))
 
-#undef pow
-#define pow(__x, __y) __tg_pow(__tg_promote2((__x), (__y))(__x), \
-__tg_promote2((__x), (__y))(__y))
+    #undef sqrt
+    #define sqrt(__x) __tg_sqrt(__tg_promote1((__x))(__x))
 
-#undef sqrt
-#define sqrt(__x) __tg_sqrt(__tg_promote1((__x))(__x))
+    #undef fabs
+    #define fabs(__x) __tg_fabs(__tg_promote1((__x))(__x))
 
-#undef fabs
-#define fabs(__x) __tg_fabs(__tg_promote1((__x))(__x))
+    #undef ceil
+    #define ceil(__x) __tg_ceil(__tg_promote1((__x))(__x))
 
-#undef ceil
-#define ceil(__x) __tg_ceil(__tg_promote1((__x))(__x))
+    #undef floor
+    #define floor(__x) __tg_floor(__tg_promote1((__x))(__x))
 
-#undef floor
-#define floor(__x) __tg_floor(__tg_promote1((__x))(__x))
+    #undef round
+    #define round(__x) __tg_round(__tg_promote1((__x))(__x))
 
-#undef round
-#define round(__x) __tg_round(__tg_promote1((__x))(__x))
+#endif /* __tg_promote1 */
+
+#ifdef __tg_promote2
+
+    #undef atan2
+    #define atan2(__x, __y) __tg_atan2(__tg_promote2((__x), (__y))(__x), \
+    __tg_promote2((__x), (__y))(__y))
+
+    #undef pow
+    #define pow(__x, __y) __tg_pow(__tg_promote2((__x), (__y))(__x), \
+    __tg_promote2((__x), (__y))(__y))
+
+#endif /* __tg_promote2 */
 
 #ifdef CGFLOAT_IS_DOUBLE
     #define RSK_EPSILON DBL_EPSILON
@@ -80,6 +88,9 @@ CG_EXTERN const CGPoint RSKPointNull;
 
 // Returns the exact center point of the given rectangle.
 CGPoint RSKRectCenterPoint(CGRect rect);
+
+// Returns the `rect` with normalized values.
+CGRect RSKRectNormalize(CGRect rect);
 
 // Returns the `rect` scaled around the `point` by `sx` and `sy`.
 CGRect RSKRectScaleAroundPoint(CGRect rect, CGPoint point, CGFloat sx, CGFloat sy);

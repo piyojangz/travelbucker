@@ -18,7 +18,7 @@ import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import ActionSheet from '@yfuks/react-native-action-sheet';
 import Piechart from '../general/Piechart';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { ifIphoneX } from 'react-native-iphone-x-helper'
+import { isIphoneX } from 'react-native-iphone-x-helper'
 import {
   View,
   Alert,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: ifIphoneX ? 60:30,
+    bottom: isIphoneX() ? 60:30,
     left: (Dimensions.get('window').width / 2) - 30,
   },
   chartview: {

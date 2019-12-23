@@ -8,7 +8,7 @@
 import Colors from './colors';
 import Fonts from './fonts';
 import Sizes from './sizes';
-import { ifIphoneX } from 'react-native-iphone-x-helper'
+import { isIphoneX } from 'react-native-iphone-x-helper'
 export default {
   appContainer: {
     backgroundColor: '#FFF',
@@ -238,8 +238,8 @@ export default {
 
   // TabBar
   tabbar: {
-    paddingBottom: ifIphoneX ? 30 : 0,
-    height: ifIphoneX ? 100 : 50,
+    paddingBottom: isIphoneX() ? 30 : 0,
+    height: isIphoneX() ? 100 : 50,
     backgroundColor: Colors.tabbar.background,
     borderTopColor: Colors.border,
     borderTopWidth: 1,

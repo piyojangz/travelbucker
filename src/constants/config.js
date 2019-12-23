@@ -21,9 +21,9 @@ export default {
 
   // URLs
   urls: {},
-api: 'http://localhost:8888/hpocket/',
-imgaddress: 'http://localhost:8888/hpocket/public/uploads/trip_img/',
-avatarblank: 'http://localhost:8888/public/uploads/trip_img/avatar-blank.jpg',
+api: 'http://pocket.thaiappdev.com/',
+imgaddress: 'http://pocket.thaiappdev.com/public/uploads/trip_img/',
+avatarblank: 'http://pocket.thaiappdev.com/public/uploads/trip_img/avatar-blank.jpg',
 
 
   // api:'http://localhost/hangpocket/',

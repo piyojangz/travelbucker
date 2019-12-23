@@ -19,7 +19,6 @@ pod 'FBSDKCoreKit', '5.8.0'
  pod 'FBSDKShareKit', '5.8.0'
  pod 'RSKImageCropper'
  pod 'QBImagePickerController'   
-
 end
 
  

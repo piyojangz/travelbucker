@@ -33,6 +33,7 @@ import GridView from 'react-native-easy-gridview';
 import Timeline from 'react-native-timeline-listview'
 import SleekLoadingIndicator from 'react-native-sleek-loading-indicator';
 import { AppConfig } from '@constants/';
+import { isIphoneX } from 'react-native-iphone-x-helper'
 // Components
 import {
   Button,
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   Container: {
-    flex: 1, 
+    flex: 1,
   },
   tabbar: {
     backgroundColor: '#F9F8F8'
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: (Platform.OS === 'ios') ? 60 : 60,
+    bottom: (Platform.OS === 'ios') ? isIphoneX() ? 80 : 60 : 60,
     right: 10,
   },
   list: {
@@ -371,14 +372,13 @@ class Profile extends Component {
       case '0':
         return (
           <View style={[styles.tabContainer, { backgroundColor: '#fff' }]}>
-
             <Timeline
               timeContainerStyle={{ minWidth: 72 }}
               circleColor={AppColors.brand.primary}
               lineColor={AppColors.brand.primary}
               timeStyle={{ fontSize: 12, }}
               titleStyle={{ lineHeight: 22, fontSize: 16 }}
-              descriptionStyle={{ lineHeight: 16, color: '#666' ,marginBottom:10}}
+              descriptionStyle={{ lineHeight: 16, color: '#666', marginBottom: 10 }}
               onEventPress={this.onEventPress}
               options={{
                 refreshControl: (
@@ -393,7 +393,7 @@ class Profile extends Component {
               enableEmptySections={true}
             />
             {this.rendernodata()}
-            <Spacer size={20} />
+            <Spacer size={isIphoneX() ? 60 : 35} />
             <TouchableWithoutFeedback onPress={Actions.addtrip} >
               <Animatable.View style={styles.floatbutton} animation="zoomIn" duration={200} easing="ease-out" >
                 <Icon
@@ -417,7 +417,7 @@ class Profile extends Component {
               lineColor={'#aaa'}
               timeStyle={{ fontSize: 12, }}
               titleStyle={{ lineHeight: 22, fontSize: 16, color: '#aaa' }}
-              descriptionStyle={{ lineHeight: 16, color: '#aaa',marginBottom:10 }}
+              descriptionStyle={{ lineHeight: 16, color: '#aaa', marginBottom: 10 }}
               timeStyle={{ color: '#aaa' }}
               onEventPress={this.onEventPress}
               options={{
@@ -427,13 +427,13 @@ class Profile extends Component {
                     onRefresh={this._onRefresh.bind(this)}
                   />
                 ),
-                style: { padding: 15,marginTop: Platform.OS == 'ios' ? 0 : 15, marginLeft: Platform.OS == 'ios' ? 0 : 15, marginRight: Platform.OS == 'ios' ? 0 : 15 }
+                style: { padding: 15, marginTop: Platform.OS == 'ios' ? 0 : 15, marginLeft: Platform.OS == 'ios' ? 0 : 15, marginRight: Platform.OS == 'ios' ? 0 : 15 }
               }}
               data={this.state.past}
               enableEmptySections={true}
             />
             {this.rendernodatapast()}
-            <Spacer size={35} />
+            <Spacer size={isIphoneX() ? 60 : 35} />
 
           </View>
         );
@@ -449,7 +449,8 @@ class Profile extends Component {
                     onRefresh={this._onRefresh.bind(this)}
                   />
                 }
-                style={{ height: AppSizes.screen.height - ((Platform.OS === 'ios') ? 44 : 64), }}
+                // style={{ height: AppSizes.screen.height - ((Platform.OS === 'ios') ? 44 : 64), }}
+                style={{ marginBottom: isIphoneX() ? 65 : 40 }}
                 dataSource={this.state.friendsdataSource}
                 renderRow={this
                   .renderFriends
@@ -610,7 +611,7 @@ class Profile extends Component {
 
     return (
       <View style={{ marginTop: (Platform.OS === 'ios') ? -65 : -54, flex: 1, backgroundColor: '#F7F9FB' }}>
-        <NavigationBar 
+        <NavigationBar
           height={(Platform.OS === 'ios') ? 64 : 64}
           titleColor={'#fff'}
           backgroundColor={AppColors.brand.primary}

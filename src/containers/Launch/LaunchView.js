@@ -12,9 +12,9 @@ import PropTypes from 'prop-types';
 import {
   View,
   Image,
+  ImageBackground,
   Alert,
   StatusBar,
-  ImageBackground,
   StyleSheet,
   AsyncStorage,
   ActivityIndicator,
@@ -73,7 +73,7 @@ class AppLaunch extends Component {
 
   render = () => (
     <View style={[AppStyles.container]}>
-      <Image
+      <ImageBackground
         source={require('../../images/launch.jpg')}
         style={[styles.launchImage, AppStyles.containerCentered]}
       >
@@ -82,7 +82,7 @@ class AppLaunch extends Component {
           size={'large'}
           color={'#C1C5C8'}
         />
-      </Image>
+      </ImageBackground>
     </View>
   );
 }

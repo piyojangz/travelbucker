@@ -9,9 +9,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as appdataActions from '@redux/appdata/actions';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
 import { AppConfig } from '@constants/';
-import { StackNavigator, SafeAreaView } from 'react-navigation'; 
+import { StackNavigator, SafeAreaView } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   View,
   StyleSheet,
@@ -24,14 +25,15 @@ import LoadingContainer from 'react-native-loading-container';
 // Components
 import Loading from '@components/general/Loading';
 import Error from '@components/general/Error';
+import { PieChart } from 'react-native-svg-charts'
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  chart: {
-    width: AppSizes.screen.width,
-    flex: 1
+  chart: { 
+    flex:1,
+    marginBottom:20
   }
 });
 
@@ -115,13 +117,51 @@ class Piechart extends Component {
 
 
   render() {
+    console.log('xx', this.props.charts)
+    const data = [];
+    this.props.charts.map(obj => {
+      data.push(obj.value);
+    })
+    const colors = ['rgba(134, 65, 244, 0.8)'
+      , '#FFF78C'
+      , '#FFD08C'
+      , '#8CEAFF'
+      , '#C5EFF7'
+      , '#EC644B'
+      , '#FF8C9D'];
+
+    const randomColor = () => ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(0, 7)
+    console.log('randomColor', randomColor)
+    const pieData = data
+      .filter((value) => value > 0)
+      .map((value, index) => ({
+        value,
+        svg: {
+          fill: colors[index],
+          onPress: () => console.log('press', index),
+        },
+        key: `pie-${index}`,
+      }))
+    const titlesview = [];
+    this.props.charts.filter((obj) => obj.value > 0)
+      .map((obj, index) => {
+        console.log('valuevalue',obj)
+        titlesview.push(
+          <View key={`pies-${index}`} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <Icon name={'md-pie'} size={15} color={colors[index]} />
+            <Text style={{ marginLeft: 5, color: colors[index] }}>{obj.label}</Text>
+          </View>
+        )
+      });
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        {/* <View>
-            <Text>selected:</Text>
-            <Text> {this.state.selectedEntry}</Text>
-          </View> */}
+        <View style={{ flexDirection: 'column', alignItems: 'flex-start', alignContent: 'center', paddingHorizontal: 25 }}>
+          {titlesview}
+        </View>
         <View style={styles.container}>
+          <PieChart
+            style={styles.chart}
+            data={pieData} />
           {/* <PieChart
             style={styles.chart}
             logEnabled={true}
@@ -146,7 +186,7 @@ class Piechart extends Component {
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}
           /> */}
-          
+
         </View>
       </SafeAreaView>
     )

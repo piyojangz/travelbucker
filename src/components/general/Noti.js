@@ -374,6 +374,7 @@ class Noti extends Component {
       <NavigationBar 
         height={(Platform.OS === 'ios') ? 44 : 64}
         titleColor={'#fff'}
+        title={'Notification'}
         backgroundColor={AppColors.brand.primary}
       />
 

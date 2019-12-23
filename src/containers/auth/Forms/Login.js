@@ -122,6 +122,7 @@ class Login extends Component {
     LoginManager.logInWithPermissions(["email", "public_profile"]).then(
       function (result) {
         if (result.isCancelled) {
+          _this.setState({ loading: false, });
           alert('Login was cancelled');
         } else {
           // alert('Login was successful with permissions: '

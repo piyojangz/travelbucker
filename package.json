@@ -27,7 +27,7 @@
     "babel-preset-react-native": "^2.1.0",
     "firebase": "^4.1.2",
     "immutability-helper": "^2.7.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "16.0.0-alpha.12",
     "react-addons-shallow-compare": "^15.4.2",
